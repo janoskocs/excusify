@@ -17,8 +17,11 @@ const generateExcuseBtn = $(".input__btn");
 const responseReaction = $(".response__reaction");
 const saveBtn = $(".response__btn");
 const viewExcuses = $(".view-excuses__btn");
+const viewExcusesEl = $(".view-excuses");
 const delExcuses = $(".view-excuses__btn-delete");
 const viewList = $(".view-excuses__list");
+const loadingEl = $(".response__loading");
+const responseSaveEl = $(".response__save");
 //flags
 
 let userSelectedCategory = "";
@@ -37,7 +40,6 @@ const handleSubmit = (event) => {
     .get(EXCUSER_BASE_URL + userSelectedCategory)
     .then((response) => {
       showExcuse(response.data[0].excuse);
-      showGif(userSelectedCategory);
     })
     .catch((error) => {
       console.log(error);
@@ -46,7 +48,15 @@ const handleSubmit = (event) => {
 };
 
 const showExcuse = (excuse) => {
-  excuseParagraph.innerText = excuse;
+  loadingEl.style.display = "block";
+  setTimeout(() => {
+    excuseParagraph.innerText = excuse;
+
+    showGif();
+    loadingEl.style.display = "none";
+    viewExcusesEl.style.display = "block";
+    responseSaveEl.style.display = "block";
+  }, 3000);
 };
 
 const moods = ["sus", "dramatic", "lies", "fainting", "shocked", "crying"];

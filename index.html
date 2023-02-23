@@ -11,51 +11,64 @@
       defer
     ></script>
     <script src="script.js" defer></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bree+Serif&family=Bungee+Shade&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles/styles.css" />
   </head>
   <body>
-    <header class="header">
-      <h1 class="header__title">Excusify</h1>
-      <h3 class="header__sub-title">
-        Get out of uncomfortable situations with a click of a button
-      </h3>
-    </header>
-    <main class="app">
-      <form class="input" id="input-form">
-        <p class="input__header">Select the theme of your excuse below</p>
+    <div class="app-container">
+      <header class="header">
+        <h1 class="header__title">Excusify</h1>
+        <h3 class="header__sub-title">
+          Get rid of personal responsibility with a single click
+        </h3>
+      </header>
+      <main class="app">
+        <form class="input" id="input-form">
+          <p class="input__header">Select the theme of your excuse below</p>
 
-        <div class="input__radio-wrapper">
-          <input type="radio" name="category" value="office" />
-          <label for="office">Office</label>
+          <div class="input__radio-wrapper">
+            <input type="radio" name="category" value="office" />
+            <label for="office">Office</label>
 
-          <input type="radio" name="category" value="college" />
-          <label for="college">College</label>
+            <input type="radio" name="category" value="college" />
+            <label for="college">College</label>
 
-          <input type="radio" name="category" value="developers" />
-          <label for="developers">Developer</label>
+            <input type="radio" name="category" value="developers" />
+            <label for="developers">Developer</label>
 
-          <input type="radio" name="category" value="unbelievable" checked />
-          <label for="college">Random</label>
+            <input type="radio" name="category" value="unbelievable" checked />
+            <label for="college">Random</label>
+          </div>
+          <button type="submit" class="input__btn">I need an excuse!</button>
+        </form>
+
+        <div class="response">
+          <div class="response__loading">
+            <img class="response__loading-img" src="./gear.gif" alt="Loading" />
+          </div>
+
+          <p class="response__text"></p>
+
+          <div class="response__img-wrapper">
+            <p class="response__reaction"></p>
+          </div>
+          <div class="response__save">
+            <button class="response__btn" disabled>Save this excuse</button>
+          </div>
         </div>
-        <button type="submit" class="input__btn">I need an excuse!</button>
-      </form>
+      </main>
 
-      <div class="response">
-        <p class="response__text">Mmmhmm... there is no excuse for that!</p>
-
-        <div class="response__img-wrapper">
-          <p class="response__reaction"></p>
-        </div>
-        <div class="response__save">
-          <button class="response__btn" disabled>Save this excuse</button>
-        </div>
-      </div>
-    </main>
-
-    <section class="view-excuses">
-      <button class="view-excuses__btn">View Saved Excuses</button>
-      <button class="view-excuses__btn-delete">Delete all my excuses</button>
-      <ul class="view-excuses__list"></ul>
-    </section>
+      <section class="view-excuses">
+        <button class="view-excuses__btn">View Saved Excuses</button>
+        <button class="view-excuses__btn-delete">Delete all my excuses</button>
+        <ul class="view-excuses__list"></ul>
+      </section>
+    </div>
 
     <footer class="footer">
       <p class="footer__text">

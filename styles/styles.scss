@@ -1,0 +1,103 @@
+/*font-family: 'Bree Serif', serif;
+font-family: 'Bungee Shade', cursive; */
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  background: #348f50; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to right,
+    #56b4d3,
+    #348f50
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    45deg,
+    #56b4d3,
+    #348f50
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+  margin: 0;
+  padding: 0;
+  font-family: "Bree Serif", serif;
+  color: white;
+  font-size: 1.6rem;
+  text-shadow: 1px 1px black;
+}
+
+.app-container {
+  width: 90%;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.footer {
+  /* From https://css.glass */
+  background: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.header {
+  background: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 0 0 2rem 2rem;
+  &__title {
+    transform: rotate(-5deg);
+    margin: 0;
+    padding: 0;
+    font-size: 8rem;
+    color: palevioletred;
+    font-family: "Bungee Shade", cursive;
+    text-shadow: 1px 1px white;
+  }
+  &__sub-title {
+    font-size: 2rem;
+  }
+}
+
+.response {
+  &__text {
+    font-size: 2.5rem;
+    background: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+  }
+  &__loading {
+    display: none;
+  }
+
+  &__save {
+    display: none;
+  }
+}
+
+.view-excuses {
+  display: none;
+}
+button {
+  display: block;
+  margin: 1rem auto;
+  padding: 1rem 3rem;
+
+  cursor: pointer;
+  background-color: blueviolet;
+  border: none;
+  color: white;
+  font-family: "Bree Serif", serif;
+  text-transform: uppercase;
+  width: 25rem;
+  border-radius: 2rem;
+
+  &:hover {
+    background-color: rgb(178, 109, 243);
+  }
+}
