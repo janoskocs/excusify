@@ -22,6 +22,7 @@ const delExcuses = $(".view-excuses__btn-delete");
 const viewList = $(".view-excuses__list");
 const loadingEl = $(".response__loading");
 const responseSaveEl = $(".response__save");
+const gifWrapper = $(".response__img-wrapper");
 //flags
 
 let userSelectedCategory = "";
@@ -49,10 +50,12 @@ const handleSubmit = (event) => {
 
 const showExcuse = (excuse) => {
   loadingEl.style.display = "block";
+  gifWrapper.style.display = "none";
   setTimeout(() => {
     excuseParagraph.innerText = excuse;
 
     showGif();
+    gifWrapper.style.display = "block";
     loadingEl.style.display = "none";
     viewExcusesEl.style.display = "block";
     responseSaveEl.style.display = "block";
@@ -81,14 +84,15 @@ const showGif = () => {
 
       responseReaction.innerText =
         "Predicting your person's reaction to this excuse...";
-
+      gifWrapper.style.display = "none";
       setTimeout(() => {
+        gifWrapper.style.display = "block";
         excuseImgWrapper.removeChild(excuseImgWrapper.firstElementChild);
         excuseImgWrapper.append(img);
         generateExcuseBtn.innerText = "I need another one";
         responseReaction.innerText = "Predicted reaction.";
         saveBtn.disabled = false;
-      }, 3000);
+      }, 500);
     });
 };
 
@@ -99,6 +103,7 @@ const handleSave = () => {
   if (previousExcuses !== "[]") {
     arrayOfStrings.push(previousExcuses);
   }
+  arrayOfStrings.shift();
   arrayOfStrings.push(newExcuse);
   localStorage.setItem("excuse", JSON.stringify(arrayOfStrings));
 };
