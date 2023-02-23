@@ -54,6 +54,7 @@ body {
   backdrop-filter: blur(5px);
   -webkit-backdrop-filter: blur(5px);
   border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 2rem;
 }
 .response__loading {
   display: none;
@@ -63,6 +64,9 @@ body {
 }
 .response__img-wrapper {
   display: none;
+}
+.response__img-wrapper img {
+  width: 100%;
 }
 
 .view-excuses {
