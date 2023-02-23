@@ -76,10 +76,10 @@ const showGif = () => {
     .then((response) => {
       let imgArrayLength = 50;
       let img = document.createElement("img");
-
+      console.log(response.data.data[randomNum(imgArrayLength)].images);
       img.setAttribute(
         "src",
-        response.data.data[randomNum(imgArrayLength)].images.original.url
+        response.data.data[randomNum(imgArrayLength)].images.fixed_height.url
       );
 
       responseReaction.innerText =

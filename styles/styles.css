@@ -66,6 +66,7 @@ body {
   display: none;
 }
 .response__img-wrapper img {
+  max-width: 60rem;
   width: 100%;
 }
 

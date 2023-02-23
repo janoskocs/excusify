@@ -80,6 +80,7 @@ body {
     display: none;
 
     & img {
+      max-width: 60rem;
       width: 100%;
     }
   }
