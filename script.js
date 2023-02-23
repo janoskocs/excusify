@@ -15,6 +15,10 @@ const excuseParagraph = $(".response__text");
 const excuseImgWrapper = $(".response__img-wrapper");
 const generateExcuseBtn = $(".input__btn");
 const responseReaction = $(".response__reaction");
+const saveBtn = $(".response__btn");
+const viewExcuses = $(".view-excuses__btn");
+const delExcuses = $(".view-excuses__btn-delete");
+const viewList = $(".view-excuses__list");
 //flags
 
 let userSelectedCategory = "";
@@ -24,7 +28,6 @@ const handleSubmit = (event) => {
 
   for (let i = 0; i < event.target.length - 1; i++) {
     // -1 to exclude the submit button
-    console.log(event.target[i].checked);
     if (event.target[i].checked) {
       userSelectedCategory = event.target[i].value;
     }
@@ -33,7 +36,6 @@ const handleSubmit = (event) => {
   axios
     .get(EXCUSER_BASE_URL + userSelectedCategory)
     .then((response) => {
-      console.log(response.data[0].excuse);
       showExcuse(response.data[0].excuse);
       showGif(userSelectedCategory);
     })
@@ -60,7 +62,6 @@ const showGif = () => {
     )
     .then((response) => {
       let imgArrayLength = 50;
-      console.log(response);
       let img = document.createElement("img");
 
       img.setAttribute(
@@ -76,8 +77,39 @@ const showGif = () => {
         excuseImgWrapper.append(img);
         generateExcuseBtn.innerText = "I need another one";
         responseReaction.innerText = "Predicted reaction.";
+        saveBtn.disabled = false;
       }, 3000);
     });
 };
 
+const handleSave = () => {
+  let arrayOfStrings = [];
+  const previousExcuses = localStorage.getItem("excuse");
+  const newExcuse = excuseParagraph.innerText;
+  if (previousExcuses !== "[]") {
+    arrayOfStrings.push(previousExcuses);
+  }
+  arrayOfStrings.push(newExcuse);
+  localStorage.setItem("excuse", JSON.stringify(arrayOfStrings));
+};
+
+const viewSavedExcuses = () => {
+  let arrayOfStrings = [];
+  arrayOfStrings.push(JSON.parse(localStorage.getItem("excuse")));
+  console.log(arrayOfStrings);
+
+  for (let i = 0; i < arrayOfStrings.length; i++) {
+    let item = document.createElement("li");
+    item.innerText = arrayOfStrings[i];
+    viewList.appendChild(item);
+  }
+};
+
+const handleDeleteStorage = () => {
+  localStorage.clear();
+};
+
 form.addEventListener("submit", handleSubmit);
+saveBtn.addEventListener("click", handleSave);
+viewExcuses.addEventListener("click", viewSavedExcuses);
+delExcuses.addEventListener("click", handleDeleteStorage);
