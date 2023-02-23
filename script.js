@@ -13,6 +13,8 @@ const $ = (element) => {
 const form = $("#input-form");
 const excuseParagraph = $(".response__text");
 const excuseImgWrapper = $(".response__img-wrapper");
+const generateExcuseBtn = $(".input__btn");
+const responseReaction = $(".response__reaction");
 //flags
 
 let userSelectedCategory = "";
@@ -45,15 +47,36 @@ const showExcuse = (excuse) => {
   excuseParagraph.innerText = excuse;
 };
 
-const showGif = (category) => {
+const moods = ["sus", "dramatic", "lies", "fainting", "shocked", "crying"];
+
+const randomNum = (length) => {
+  return Math.floor(Math.random() * length);
+};
+
+const showGif = () => {
   axios
-    .get(GIPHY_BASE_URL + GIPHY_API_KEY + "&q=" + category)
+    .get(
+      GIPHY_BASE_URL + GIPHY_API_KEY + "&q=" + moods[randomNum(moods.length)]
+    )
     .then((response) => {
+      let imgArrayLength = 50;
       console.log(response);
       let img = document.createElement("img");
-      console.log(response.data.data[0].images.original.url);
-      img.setAttribute("src", response.data.data[0].images.original.url);
-      excuseImgWrapper.append(img);
+
+      img.setAttribute(
+        "src",
+        response.data.data[randomNum(imgArrayLength)].images.original.url
+      );
+
+      responseReaction.innerText =
+        "Predicting your person's reaction to this excuse...";
+
+      setTimeout(() => {
+        excuseImgWrapper.removeChild(excuseImgWrapper.firstElementChild);
+        excuseImgWrapper.append(img);
+        generateExcuseBtn.innerText = "I need another one";
+        responseReaction.innerText = "Predicted reaction.";
+      }, 3000);
     });
 };
 
